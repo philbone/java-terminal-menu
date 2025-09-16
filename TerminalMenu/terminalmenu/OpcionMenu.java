@@ -1,3 +1,4 @@
+package terminalmenu; 
 
 /**
  * Representa una opción dentro de un menú.

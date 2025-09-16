@@ -1,3 +1,4 @@
+package terminalmenu;
 
 /**
  * Interfaz que define la acción de un comando.
