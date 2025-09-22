@@ -54,3 +54,5 @@ Permite crear menús y submenús de forma fluida, evitando repetir código y man
 2. Listar Pizzas
 3. Volver     
 `Seleccione una opción:`
+
+[Revisa un ejemplo más completa acá](TerminalMenu/README.md#ejemplo-realista-menú-de-login)
