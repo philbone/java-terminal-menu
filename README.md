@@ -55,4 +55,4 @@ Permite crear menús y submenús de forma fluida, evitando repetir código y man
 3. Volver     
 `Seleccione una opción:`
 
-[Revisa un ejemplo más completa acá](TerminalMenu/README.md#ejemplo-realista-menú-de-login)
+[Revisa un ejemplo más completo acá](TerminalMenu/README.md#ejemplo-realista-menú-de-login)

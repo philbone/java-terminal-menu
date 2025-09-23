@@ -251,3 +251,78 @@ Es fácil de extender. Por ejemplo para que, una vez logueado, se muestre un sub
 - **menuUsuario** se construye con `true` → con esto le dices al Builder que es un submenu y este automáticamente incluirá la opción "Volver" al final del submenu.
 - Al hacer logout(), cerramos sesión y volvemos al menú principal (menuPrincipal.mostrar()).
 - Este patrón se puede usar para flujos más complejos (ejemplo: menú de admin, menú de invitado, etc.).
+
+## 🔑 Ejemplo: Menú de Login usando la interface `Comando`
+Hasta ahora todo lo resolvimos con lambdas, sin embargo es posible crear comandos concretos implementando la interface `Comando`.
+
+La interface `Comando` tiene solo un método: `void ejecutar()`.
+
+Los Comandos concretos deben implementar la interface `Comando`.
+
+    class LoginComando implements Comando
+    {
+        @Override
+        public void ejecutar() {
+            System.out.println("[LOGIN] Ingrese su usuario y contraseña...");
+            // Aquí iría la lógica real de autenticación
+            System.out.println("¡Bienvenido al sistema!");
+        }
+    }
+    
+    class RegistrarComando implements Comando
+    {
+        @Override
+        public void ejecutar() {
+            System.out.println("[REGISTRO] Ingrese sus datos para crear una cuenta...");
+        }
+    }
+    
+    class RecuperarComando implements Comando
+    {
+        @Override
+        public void ejecutar() {
+            System.out.println("[RECUPERACIÓN] Ingrese su correo electrónico...");
+        }
+    }
+
+    class SalirComando implements Comando
+    {
+        @Override
+        public void ejecutar() {
+            System.out.println("Cerrando el sistema...");
+            System.exit(0);
+        }
+    }
+
+En la clase principal construimos el menú e inyectamos los comandos:
+
+    public class MainLoginConComandos
+    {
+        public static void main(String[] args) {
+
+            Menu menuPrincipal = new MenuBuilder("SISTEMA DE LOGIN", false)
+                .opcion("Iniciar Sesión", new LoginComando())
+                .opcion("Registrarse", new RegistrarComando())
+                .opcion("Recuperar Contraseña", new RecuperarComando())
+                .opcion("Salir", new SalirComando())
+                .build();    
+            menuPrincipal.mostrar();
+
+        }
+    }
+
+### 💻 Ejecución esperada
+    === SISTEMA DE LOGIN ===
+    1. Iniciar Sesión
+    2. Registrarse
+    3. Recuperar Contraseña
+    4. Salir
+    Seleccione una opción: 1
+    [LOGIN] Ingrese su usuario y contraseña...
+    ¡Bienvenido al sistema!
+
+### Comparación con lambdas
+- Con lambdas:
+    - `.opcion("Iniciar Sesión", () -> System.out.println("Cliente ingresado."))`
+- Con comandos concretos:
+    - `.opcion("Iniciar Sesión", new LoginComando())`
