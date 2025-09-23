@@ -1,0 +1,9 @@
+*.class
+*.ctxt
+*.bluej
+*.dia
+*.xml
+*.mf
+*.jar
+
+doc/
